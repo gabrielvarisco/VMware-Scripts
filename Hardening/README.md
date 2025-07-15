@@ -45,7 +45,7 @@ Estabeleça uma política de manutenção para garantir que as versões mais rec
 ## 🔐 Hardening de VMware ESXi e vCenter
 
 ### 1. 🔒 Habilitar **Lockdown Mode** (modo estrito) {#1-lockdown-mode-strict}
-
+## 1-lockdown-mode-strict
 O **Lockdown Mode** limita os métodos pelos quais o host ESXi pode ser administrado diretamente, forçando a administração a ser feita exclusivamente via **vCenter**.
 
 #### Modos disponíveis:
