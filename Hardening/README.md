@@ -158,7 +158,9 @@ vSphere Client > vCenter > Configure > Networking > Firewall Rules (ou appliance
 Host Profiles são uma maneira eficaz de garantir que todos os hosts ESXi no ambiente estejam configurados conforme as políticas de segurança e conformidade.
 
 Como configurar via vSphere Client:
+```
 Vá até vSphere Client > Home > Host Profiles.
+```
 
 Selecione ou crie um Host Profile a partir de um host de referência.
 
@@ -174,20 +176,27 @@ Automação: Use o vSphere Auto Deploy para implantar hosts com configurações 
 Para minimizar o risco de acesso não autorizado, desabilite o ESXi Shell e o SSH quando não forem necessários.
 
 Como desabilitar via vSphere Client:
+```
 Vá até vSphere Client > Host > Configure > System > Advanced System Settings.
-
+```
 Procure por Config.HostAgent.plugins.solo.enableShell e defina o valor como false.
 
 Como desabilitar via CLI:
 bash
 Copiar
 # Desabilitar SSH
+```
 esxcli system ssh stop
+```
+
+```
 esxcli system settings advanced set -o /UserVars/ESXiShellTimeOut -i 0
+```
 
 # Desabilitar ESXi Shell
+```
 esxcli system settings advanced set -o /UserVars/ESXiShell -i 0
-
+```
 
 ### 7. ⚙️ Desabilitar serviços desnecessários no ESXi
 Reduza a superfície de ataque desabilitando os serviços que não são necessários no ambiente.
@@ -200,7 +209,9 @@ vFlash: Se não for utilizado, pode ser desabilitado para reduzir a superfície 
 Fibre Channel: Desabilite se não for necessário para a infraestrutura.
 
 Como desabilitar via vSphere Client:
+```
 Vá até vSphere Client > Host > Configure > System > Services.
+```
 
 Selecione os serviços não necessários e clique em Stop.
 
@@ -209,21 +220,26 @@ Selecione os serviços não necessários e clique em Stop.
 Configurar o syslog remoto é uma prática essencial para centralizar logs de eventos e facilitar a auditoria e monitoramento.
 
 Como configurar via vSphere Client:
+```
 Vá até vSphere Client > Host > Configure > System > Advanced System Settings.
+```
 
 Altere a variável Syslog.global.logHost para o endereço do servidor de syslog (ex: udp://192.168.1.100:514).
 
 Exemplo de configuração via CLI:
 bash
 Copiar
+```
 esxcli system syslog config set --loghost='udp://192.168.1.100:514'
-
+```
 
 ### 9. 👥 Aplicar RBAC corretamente no vCenter
 A implementação de RBAC (Role-Based Access Control) permite gerenciar com precisão quem tem acesso a quais recursos dentro do vCenter, limitando privilégios de acordo com o papel de cada usuário.
 
 Como configurar via vSphere Client:
+```
 Vá até vSphere Client > vCenter > Configure > Permissions.
+```
 
 Crie ou edite as permissões de usuário, atribuindo papéis adequados a cada usuário ou grupo de usuários.
 
@@ -237,7 +253,9 @@ Auditoria de acesso: Realize auditorias regulares nas permissões para garantir 
 É fundamental remover ou desabilitar contas locais genéricas, como root, que não podem ser auditadas, ou que não têm um propósito claramente definido.
 
 Como remover contas locais via vSphere Client:
+```
 Vá até vSphere Client > Host > Configure > System > Users.
+```
 
 Selecione as contas não necessárias e remova ou desabilite.
 
@@ -273,7 +291,9 @@ Exemplo de configuração via CLI:
 bash
 Copiar
 # Substituir o certificado no ESXi
+```
 esxcli system certs install --cert-file=/path/to/valid-cert.pem --key-file=/path/to/valid-cert-key.pem
+```
 
 
 ### 13. 🌐 Isolamento de redes técnicas
