@@ -140,7 +140,7 @@ vSphere Client > Networking > Distributed Port Group > Configure > Traffic Filte
 🔐 Isso ajuda a evitar acesso lateral não autorizado dentro da rede virtualizada.
 
 
-## 4. 🧱 Configuração do **Firewall no vCenter Server**
+## 4. Configuração do **Firewall no vCenter Server**
 
 Aplicar regras no próprio vCenter para restringir quem pode acessá-lo.
 
