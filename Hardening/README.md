@@ -25,8 +25,8 @@ Estabeleça uma política de manutenção para garantir que as versões mais rec
 
 ## 🔎 Índice
 
-1. [Lockdown Mode (Strict)](#1. 🔒 Habilitar **Lockdown Mode** (modo estrito))
-2. [Firewall do ESXi](#2. 🔥 Configuração do **Firewall do ESXi**)
+1. [Lockdown Mode (Strict)](#1. 🔒 Habilitar Lockdown Mode (modo estrito))
+2. [Firewall do ESXi](#2. 🔥 Configuração do Firewall do ESXi)
 3. [Traffic Filtering and Marking](#3-🧱-ativar-e-configurar-traffic-filtering-and-marking)
 4. [Firewall no vCenter Server](#4-🧱-configuração-do-firewall-no-vcenter-server)
 5. [Host Profile](#5-🧩-aplicar-configurações-via-host-profile)
