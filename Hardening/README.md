@@ -6,6 +6,16 @@ Este repositório centraliza práticas recomendadas de hardening para ambientes 
 
 ---
 
+📅 Manter os Produtos VMware Atualizados
+Para garantir a máxima segurança, desempenho e compatibilidade, é essencial que todos os componentes do ambiente VMware sejam mantidos nas versões mais recentes. Isso inclui não apenas o vCenter Server e os hosts ESXi, mas também quaisquer ferramentas de gerenciamento ou plugins adicionais. Manter-se atualizado ajuda a proteger contra vulnerabilidades conhecidas e a aproveitar novas funcionalidades que melhoram a segurança e a eficiência do ambiente.
+
+Verifique regularmente as atualizações de versões e patches.
+
+Estabeleça uma política de manutenção para garantir que as versões mais recentes sejam aplicadas de forma controlada e sem interrupções nos serviços.
+
+---
+
+
 ## ✅ Pré-requisitos
 
 - Hosts VMware ESXi com vCenter Server para gerenciamento centralizado  
@@ -29,13 +39,12 @@ Este repositório centraliza práticas recomendadas de hardening para ambientes 
 12. [Substituir certificados autoassinados](#12-🔐-substituir-certificados-autoassinados-por-certificados-válidos)
 13. [Isolamento de redes técnicas](#13-🌐-isolamento-de-rede-de-gerenciamento-vmotion-vsan-entre-outras)
 14. [Auditoria e Logs](#14-🚨-auditoria-e-logs)
-15. [Atualizações de Segurança e Patches](#15-⚡-atualizações-de-segurança-e-patches)
 
 ---
 
 ## 🔐 Hardening de VMware ESXi e vCenter
 
-### 1. 🔒 Habilitar **Lockdown Mode** (modo estrito)
+### 1. 🔒 Habilitar **Lockdown Mode** (modo estrito) {#1-lockdown-mode-strict}
 
 O **Lockdown Mode** limita os métodos pelos quais o host ESXi pode ser administrado diretamente, forçando a administração a ser feita exclusivamente via **vCenter**.
 
@@ -269,7 +278,9 @@ Documentação de contas: Mantenha uma lista de todas as contas e seus privilég
 O login banner exibe uma mensagem legal ou de segurança antes de permitir o login, avisando os usuários sobre as políticas de segurança.
 
 Como configurar:
+```
 No vSphere Client, vá até Host > Configure > System > Security Profile.
+```
 
 Edite as configurações de login banner e adicione uma mensagem apropriada.
 
@@ -284,8 +295,9 @@ Para aumentar a segurança, substitua os certificados autoassinados por certific
 
 Como substituir:
 Obtenha um certificado válido de uma CA confiável.
-
+```
 Vá até vSphere Client > Host > Configure > System > Certificates para importar o novo certificado.
+```
 
 Exemplo de configuração via CLI:
 bash
@@ -300,7 +312,9 @@ esxcli system certs install --cert-file=/path/to/valid-cert.pem --key-file=/path
 Isolar redes de gerenciamento, vMotion, vSAN e outras redes técnicas para evitar tráfego indesejado e melhorar a segurança geral.
 
 Como configurar via vSphere Client:
+```
 Vá até Networking > Distributed Switch > Configure.
+```
 
 Crie VLANs separadas para cada uma das redes (ex: vMotion, vSAN, Management).
 
@@ -310,9 +324,4 @@ Configuração de logs detalhados: Certifique-se de que logs detalhados sejam ge
 
 Envio para um servidor syslog remoto: Centralize os logs para facilitar auditoria e resposta a incidentes.
 
-
-### 15. ⚡ Atualizações de Segurança e Patches
-Mantenha o ESXi e vCenter sempre atualizados com os patches de segurança mais recentes.
-
-Configurar Auto-Update: Se possível, configure o auto-update para aplicar patches automaticamente no ESXi.
 
