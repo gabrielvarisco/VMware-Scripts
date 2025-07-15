@@ -25,26 +25,26 @@ Estabeleça uma política de manutenção para garantir que as versões mais rec
 
 ## 🔎 Índice
 
-1. [Lockdown Mode (Strict)](#1-Habilitar-LockdownMode)
-2. [Firewall do ESXi](#2-🔥-configuração-do-firewall-do-esxi)
-3. [Traffic Filtering and Marking](#3-🧱-ativar-e-configurar-traffic-filtering-and-marking)
-4. [Firewall no vCenter Server](#4-🧱-configuração-do-firewall-no-vcenter-server)
-5. [Host Profile](#5-🧩-aplicar-configurações-via-host-profile)
-6. [Desabilitar SSH e ESXi Shell](#6-🚫-desabilitar-esxi-shell-e-ssh-quando-não-estiverem-em-uso)
-7. [Desabilitar serviços desnecessários](#7-⚙️-desabilitar-serviços-desnecessários-no-esxi)
-8. [Configurar syslog remoto](#8-📝-configurar-syslog-remoto-no-esxi)
-9. [Aplicar RBAC no vCenter](#9-👥-aplicar-rbac-corretamente-no-vcenter)
-10. [Remover contas locais genéricas](#10-👤-remover-contas-locais-genéricas-ou-não-rastreáveis)
-11. [Habilitar login banner](#11-📢-habilitar-login-banner-aviso-legal)
-12. [Substituir certificados autoassinados](#12-🔐-substituir-certificados-autoassinados-por-certificados-válidos)
-13. [Isolamento de redes técnicas](#13-🌐-isolamento-de-rede-de-gerenciamento-vmotion-vsan-entre-outras)
-14. [Auditoria e Logs](#14-🚨-auditoria-e-logs)
+1. [Lockdown Mode (Strict)](#1-habilitar-lockdownmode)
+2. [Firewall do ESXi](#2-configuração-do-firewall-do-esxi)
+3. [Traffic Filtering and Marking](#3-ativar-e-configurar-traffic-filtering-and-marking)
+4. [Firewall no vCenter Server](#4-configuração-do-firewall-no-vcenter-server)
+5. [Host Profile](#5-aplicar-configurações-via-host-profile)
+6. [Desabilitar SSH e ESXi Shell](#6-desabilitar-esxi-shell-e-ssh-quando-não-estiverem-em-uso)
+7. [Desabilitar serviços desnecessários](#7-desabilitar-serviços-desnecessários-no-esxi)
+8. [Configurar syslog remoto](#8-configurar-syslog-remoto-no-esxi)
+9. [Aplicar RBAC no vCenter](#9-aplicar-rbac-corretamente-no-vcenter)
+10. [Remover contas locais genéricas](#10-remover-contas-locais-genéricas-ou-não-rastreáveis)
+11. [Habilitar login banner](#11-habilitar-login-banner-aviso-legal)
+12. [Substituir certificados autoassinados](#12-substituir-certificados-autoassinados-por-certificados-válidos)
+13. [Isolamento de redes técnicas](#13-isolamento-de-rede-de-gerenciamento-vmotion-vsan-entre-outras)
+14. [Auditoria e Logs](#14-auditoria-e-logs)
 
 ---
 
 ## 🔐 Hardening de VMware ESXi e vCenter
 
-## 1-Habilitar-LockdownMode
+## 1. Habilitar-LockdownMode
 O **Lockdown Mode** limita os métodos pelos quais o host ESXi pode ser administrado diretamente, forçando a administração a ser feita exclusivamente via **vCenter**.
 
 #### Modos disponíveis:
@@ -65,7 +65,6 @@ O **Lockdown Mode** limita os métodos pelos quais o host ESXi pode ser administ
 ```
 vSphere Client > Host > Configure > System > Security Profile > Edit > Enable Lockdown Mode (Strict)
 ```
-## 1 - Habilitar-LockdownMode
 #### **Sobre DCUI e interfaces de gerenciamento remoto (iDRAC, iLO)**
 
 Mesmo com o Lockdown Mode ativado, o acesso **físico ou virtual** ao console via iDRAC, iLO ou IPMI ainda permite acesso ao **DCUI (Direct Console User Interface)**, que é executado diretamente no host.
@@ -103,7 +102,7 @@ vSphere Client > Host > Configure > System > Services > Direct Console UI > Star
 - Audite periodicamente o uso do console remoto com ferramentas como **Graylog**, **Aria Operations for Logs** ou outro SIEM integrado  
 - Monitore eventos de ativação do DCUI e alterações no Lockdown Mode
 
-### 2. 🔥 Configuração do **Firewall do ESXi**
+## 2. Configuração do **Firewall do ESXi**
 
 Configure o firewall local de cada host ESXi para permitir apenas IPs confiáveis nos seguintes serviços:
 
@@ -141,7 +140,7 @@ vSphere Client > Networking > Distributed Port Group > Configure > Traffic Filte
 🔐 Isso ajuda a evitar acesso lateral não autorizado dentro da rede virtualizada.
 
 
-### 4. 🧱 Configuração do **Firewall no vCenter Server**
+## 4. 🧱 Configuração do **Firewall no vCenter Server**
 
 Aplicar regras no próprio vCenter para restringir quem pode acessá-lo.
 
