@@ -25,7 +25,7 @@ Estabeleça uma política de manutenção para garantir que as versões mais rec
 
 ## 🔎 Índice
 
-1. [Lockdown Mode (Strict)](#1-🔒-habilitar-lockdown-mode-modo-estrito)
+1. [Lockdown Mode (Strict)](#1-lockdown-mode-strict)
 2. [Firewall do ESXi](#2-🔥-configuração-do-firewall-do-esxi)
 3. [Traffic Filtering and Marking](#3-🧱-ativar-e-configurar-traffic-filtering-and-marking)
 4. [Firewall no vCenter Server](#4-🧱-configuração-do-firewall-no-vcenter-server)
