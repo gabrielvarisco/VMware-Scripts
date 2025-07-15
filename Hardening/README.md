@@ -324,9 +324,6 @@ Configuração de Logs
 Configure os hosts ESXi e vCenter para gerar logs detalhados de eventos importantes, como alterações no sistema e ações de administradores.
 
 Caminho para configurar no ESXi:
-
-pgsql
-Copiar
 ```
 vSphere Client > Host > Configure > System > Advanced System Settings > Syslog.global.logHost
 ```
