@@ -25,7 +25,7 @@ Estabeleça uma política de manutenção para garantir que as versões mais rec
 
 ## 🔎 Índice
 
-1. [Lockdown Mode (Strict)](#Habilitar-LockdownMode)
+1. [Lockdown Mode (Strict)](#1-Habilitar-LockdownMode)
 2. [Firewall do ESXi](#2-🔥-configuração-do-firewall-do-esxi)
 3. [Traffic Filtering and Marking](#3-🧱-ativar-e-configurar-traffic-filtering-and-marking)
 4. [Firewall no vCenter Server](#4-🧱-configuração-do-firewall-no-vcenter-server)
@@ -44,7 +44,7 @@ Estabeleça uma política de manutenção para garantir que as versões mais rec
 
 ## 🔐 Hardening de VMware ESXi e vCenter
 
-## 1. 🔒 Habilitar **Lockdown Mode** (modo estrito) ##Habilitar-LockdownMode
+## 1-Habilitar-LockdownMode
 O **Lockdown Mode** limita os métodos pelos quais o host ESXi pode ser administrado diretamente, forçando a administração a ser feita exclusivamente via **vCenter**.
 
 #### Modos disponíveis:
@@ -65,7 +65,7 @@ O **Lockdown Mode** limita os métodos pelos quais o host ESXi pode ser administ
 ```
 vSphere Client > Host > Configure > System > Security Profile > Edit > Enable Lockdown Mode (Strict)
 ```
-
+## 1 - Habilitar-LockdownMode
 #### **Sobre DCUI e interfaces de gerenciamento remoto (iDRAC, iLO)**
 
 Mesmo com o Lockdown Mode ativado, o acesso **físico ou virtual** ao console via iDRAC, iLO ou IPMI ainda permite acesso ao **DCUI (Direct Console User Interface)**, que é executado diretamente no host.
