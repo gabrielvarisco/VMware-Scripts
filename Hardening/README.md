@@ -119,7 +119,7 @@ vSphere Client > Host > Configure > System > Firewall > Edit > Allowed IP Addres
 
 ⚠️ Importante: caso a lista de IPs permitidos para um serviço esteja vazia, ele ficará acessível para qualquer origem. Preencha sempre explicitamente os IPs autorizados para cada serviço crítico.
 
-### 3. 🧱 Ativar e configurar **Traffic Filtering and Marking**
+## 3. Ativar e configurar **Traffic Filtering and Marking**
 
 Use filtros de tráfego para isolar e proteger a comunicação entre VMs e hosts. Uma boa prática é o uso de um **Jump Server** com regras explícitas.
 
@@ -161,7 +161,7 @@ vSphere Client > vCenter > Configure > Networking > Firewall Rules (ou appliance
 /usr/bin/firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address=10.10.10.100/32 accept'
 ```
 
-### 5. 🧩 Aplicar configurações via Host Profile
+## 5. Aplicar configurações via Host Profile
 Host Profiles são uma maneira eficaz de garantir que todos os hosts ESXi no ambiente estejam configurados conforme as políticas de segurança e conformidade.
 
 Como configurar via vSphere Client:
@@ -179,7 +179,7 @@ Auditoria e conformidade: Sempre audite os hosts periodicamente para verificar a
 Automação: Use o vSphere Auto Deploy para implantar hosts com configurações já aplicadas via Host Profiles.
 
 
-### 6. 🚫 Desabilitar ESXi Shell e SSH quando não estiverem em uso
+## 6. Desabilitar ESXi Shell e SSH quando não estiverem em uso
 Para minimizar o risco de acesso não autorizado, desabilite o ESXi Shell e o SSH quando não forem necessários.
 
 Como desabilitar via vSphere Client:
@@ -205,7 +205,7 @@ esxcli system settings advanced set -o /UserVars/ESXiShellTimeOut -i 0
 esxcli system settings advanced set -o /UserVars/ESXiShell -i 0
 ```
 
-### 7. ⚙️ Desabilitar serviços desnecessários no ESXi
+## 7. Desabilitar serviços desnecessários no ESXi
 Reduza a superfície de ataque desabilitando os serviços que não são necessários no ambiente.
 
 Serviços comuns a desabilitar:
@@ -223,7 +223,7 @@ Vá até vSphere Client > Host > Configure > System > Services.
 Selecione os serviços não necessários e clique em Stop.
 
 
-### 8. 📝 Configurar syslog remoto no ESXi
+## 8. Configurar syslog remoto no ESXi
 Configurar o syslog remoto é uma prática essencial para centralizar logs de eventos e facilitar a auditoria e monitoramento.
 
 Como configurar via vSphere Client:
@@ -240,7 +240,7 @@ Copiar
 esxcli system syslog config set --loghost='udp://192.168.1.100:514'
 ```
 
-### 9. 👥 Aplicar RBAC corretamente no vCenter
+## 9. Aplicar RBAC corretamente no vCenter
 A implementação de RBAC (Role-Based Access Control) permite gerenciar com precisão quem tem acesso a quais recursos dentro do vCenter, limitando privilégios de acordo com o papel de cada usuário.
 
 Como configurar via vSphere Client:
@@ -256,7 +256,7 @@ Papel mínimo necessário: Certifique-se de que os usuários tenham apenas as pe
 Auditoria de acesso: Realize auditorias regulares nas permissões para garantir que os privilégios não sejam excessivos.
 
 
-### 10. 👤 Remover contas locais genéricas ou não rastreáveis
+## 10. Remover contas locais genéricas ou não rastreáveis
 É fundamental remover ou desabilitar contas locais genéricas, como root, que não podem ser auditadas, ou que não têm um propósito claramente definido.
 
 Como remover contas locais via vSphere Client:
@@ -272,7 +272,7 @@ Utilizar contas baseadas em AD ou LDAP sempre que possível, para centralizar e 
 Documentação de contas: Mantenha uma lista de todas as contas e seus privilégios para facilitar auditorias.
 
 
-### 11. 📢 Habilitar login banner (aviso legal)
+## 11. Habilitar login banner (aviso legal)
 O login banner exibe uma mensagem legal ou de segurança antes de permitir o login, avisando os usuários sobre as políticas de segurança.
 
 Como configurar:
@@ -288,7 +288,7 @@ Copiar
 Aviso: Este sistema é propriedade da [Nome da Empresa]. O acesso é permitido apenas para usuários autorizados. Qualquer acesso não autorizado é estritamente proibido e será punido por lei.
 
 
-### 12. 🔐 Substituir certificados autoassinados por certificados válidos
+## 12. Substituir certificados autoassinados por certificados válidos
 Para aumentar a segurança, substitua os certificados autoassinados por certificados válidos emitidos por uma Autoridade Certificadora (CA) confiável.
 
 Como substituir:
@@ -306,7 +306,7 @@ esxcli system certs install --cert-file=/path/to/valid-cert.pem --key-file=/path
 ```
 
 
-### 13. 🌐 Isolamento de redes técnicas
+## 13. Isolamento de redes técnicas
 Isolar redes de gerenciamento, vMotion, vSAN e outras redes técnicas para evitar tráfego indesejado e melhorar a segurança geral.
 
 Como configurar via vSphere Client:
@@ -317,9 +317,26 @@ Vá até Networking > Distributed Switch > Configure.
 Crie VLANs separadas para cada uma das redes (ex: vMotion, vSAN, Management).
 
 
-### 14. 🚨 Auditoria e Logs
-Configuração de logs detalhados: Certifique-se de que logs detalhados sejam gerados para todas as ações administrativas.
+## 14. Auditoria e Logs
+Certifique-se de que logs detalhados sejam gerados para todas as ações administrativas e enviados para um servidor syslog remoto para facilitar a auditoria e a resposta a incidentes.
 
-Envio para um servidor syslog remoto: Centralize os logs para facilitar auditoria e resposta a incidentes.
+Configuração de Logs
+Configure os hosts ESXi e vCenter para gerar logs detalhados de eventos importantes, como alterações no sistema e ações de administradores.
 
+Caminho para configurar no ESXi:
 
+pgsql
+Copiar
+```
+vSphere Client > Host > Configure > System > Advanced System Settings > Syslog.global.logHost
+```
+Centralização de Logs
+
+Graylog e Aria Operations for Logs são ferramentas recomendadas para centralizar, analisar e monitorar logs em tempo real. Ambas oferecem recursos de correlação de eventos, alertas personalizados e relatórios detalhados.
+
+Graylog: Plataforma de gerenciamento de logs que facilita a análise e a visualização centralizada de logs de múltiplos servidores.
+Aria Operations for Logs: Solução da VMware para monitoramento e análise de logs em tempo real em ambientes VMware.
+
+Melhores Práticas
+Armazenamento seguro de logs: Garanta que os logs sejam protegidos contra alterações não autorizadas.
+Monitoramento contínuo: Implemente sistemas de alertas para detectar eventos críticos e responder rapidamente.
