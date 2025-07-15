@@ -25,8 +25,8 @@ Estabeleça uma política de manutenção para garantir que as versões mais rec
 
 ## 🔎 Índice
 
-1. [Lockdown Mode (Strict)](#1. 🔒 Habilitar Lockdown Mode (modo estrito))
-2. [Firewall do ESXi](#2.🔥Configuração do Firewall do ESXi)
+1. [Lockdown Mode (Strict)](#Habilitar-LockdownMode)
+2. [Firewall do ESXi](#2-🔥-configuração-do-firewall-do-esxi)
 3. [Traffic Filtering and Marking](#3-🧱-ativar-e-configurar-traffic-filtering-and-marking)
 4. [Firewall no vCenter Server](#4-🧱-configuração-do-firewall-no-vcenter-server)
 5. [Host Profile](#5-🧩-aplicar-configurações-via-host-profile)
@@ -44,8 +44,7 @@ Estabeleça uma política de manutenção para garantir que as versões mais rec
 
 ## 🔐 Hardening de VMware ESXi e vCenter
 
-## 1. 🔒 Habilitar **Lockdown Mode** (modo estrito)
-
+## 1. 🔒 Habilitar **Lockdown Mode** (modo estrito) ##Habilitar-LockdownMode
 O **Lockdown Mode** limita os métodos pelos quais o host ESXi pode ser administrado diretamente, forçando a administração a ser feita exclusivamente via **vCenter**.
 
 #### Modos disponíveis:
@@ -104,7 +103,7 @@ vSphere Client > Host > Configure > System > Services > Direct Console UI > Star
 - Audite periodicamente o uso do console remoto com ferramentas como **Graylog**, **Aria Operations for Logs** ou outro SIEM integrado  
 - Monitore eventos de ativação do DCUI e alterações no Lockdown Mode
 
-## 2. 🔥 Configuração do **Firewall do ESXi**
+### 2. 🔥 Configuração do **Firewall do ESXi**
 
 Configure o firewall local de cada host ESXi para permitir apenas IPs confiáveis nos seguintes serviços:
 
